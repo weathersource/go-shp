@@ -1,10 +1,10 @@
 go-shp
 ======
 
-[![Build Status](https://travis-ci.org/jonas-p/go-shp.svg?branch=master)](https://travis-ci.org/jonas-p/go-shp)
-[![Build status](https://ci.appveyor.com/api/projects/status/b64sntax4kxlouxa?svg=true)](https://ci.appveyor.com/project/fawick/go-shp)
-[![Go Report Card](https://goreportcard.com/badge/github.com/jonas-p/go-shp)](https://goreportcard.com/report/github.com/jonas-p/go-shp)
-[![Codevov](https://codecov.io/gh/jonas-p/go-shp/branch/master/graphs/badge.svg)](https://codecov.io/gh/jonas-p/go-shp)
+[![Build Status](https://travis-ci.com/weathersource/go-shp.svg?branch=master)](https://travis-ci.com/weathersource/go-shp)
+[![Codevov](https://img.shields.io/codecov/c/github/weathersource/go-shp.svg)](https://codecov.io/gh/weathersource/go-shp)
+[![Go Report Card](https://goreportcard.com/badge/github.com/weathersource/go-shp)](https://goreportcard.com/report/github.com/weathersource/go-shp)
+[![GoDoc](https://img.shields.io/badge/godoc-ref-blue.svg)](https://godoc.org/github.com/weathersource/go-shp) |
 
 Go library for reading and writing ESRI Shapefiles. This is a pure Golang implementation based on the ESRI Shapefile technical description.
 
@@ -12,7 +12,7 @@ Go library for reading and writing ESRI Shapefiles. This is a pure Golang implem
 #### Installation
 
     go get github.com/jonas-p/go-shp
-    
+
 #### Importing
 
 ```go
@@ -25,19 +25,19 @@ import "github.com/jonas-p/go-shp"
 ```go
 // open a shapefile for reading
 shape, err := shp.Open("points.shp")
-if err != nil { log.Fatal(err) } 
+if err != nil { log.Fatal(err) }
 defer shape.Close()
-	
+
 // fields from the attribute table (DBF)
 fields := shape.Fields()
-	
+
 // loop through all features in the shapefile
 for shape.Next() {
 	n, p := shape.Shape()
-	
+
 	// print feature
 	fmt.Println(reflect.TypeOf(p).Elem(), p.BBox())
-	
+
 	// print attributes
 	for k, f := range fields {
 		val := shape.ReadAttribute(n, k)
@@ -57,25 +57,25 @@ points := []shp.Point{
 	shp.Point{15.0, 15.0},
 	shp.Point{15.0, 10.0},
 }
-	
+
 // fields to write
 fields := []shp.Field{
 	// String attribute field with length 25
 	shp.StringField("NAME", 25),
 }
-	
+
 // create and open a shapefile for writing points
 shape, err := shp.Create("points.shp", shp.POINT)
 if err != nil { log.Fatal(err) }
 defer shape.Close()
-	
+
 // setup fields for attributes
 shape.SetFields(fields)
-	
+
 // write points and attributes
 for n, point := range points {
 	shape.Write(&point)
-	
+
 	// write attribute for object n for field 0 (NAME)
 	shape.WriteAttribute(n, 0, "Point " + strconv.Itoa(n + 1))
 }
