@@ -1,14 +1,12 @@
-go-shp
-======
+# go-shp
 
-[![Build Status](https://travis-ci.com/weathersource/go-shp.svg?branch=master)](https://travis-ci.com/weathersource/go-shp)
-[![Codevov](https://img.shields.io/codecov/c/github/weathersource/go-shp.svg)](https://codecov.io/gh/weathersource/go-shp)
-[![Go Report Card](https://goreportcard.com/badge/github.com/weathersource/go-shp)](https://goreportcard.com/report/github.com/weathersource/go-shp)
+[![CircleCI](https://circleci.com/gh/weathersource/go-shp.svg?style=shield)](https://circleci.com/gh/weathersource/go-shp)
 [![GoDoc](https://img.shields.io/badge/godoc-ref-blue.svg)](https://godoc.org/github.com/weathersource/go-shp) |
 
 Go library for reading and writing ESRI Shapefiles. This is a pure Golang implementation based on the ESRI Shapefile technical description.
 
 ### Usage
+
 #### Installation
 
     go get github.com/jonas-p/go-shp
@@ -20,6 +18,7 @@ import "github.com/jonas-p/go-shp"
 ```
 
 ### Examples
+
 #### Reading a shapefile
 
 ```go
